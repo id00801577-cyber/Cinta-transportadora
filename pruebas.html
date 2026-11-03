@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pruebas con los ejercicios de los apuntes</title>
+  <meta name="author" content="Alberto Jorge Lorenzo">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    .pruebas { max-width: 1100px; margin: 0 auto; padding: 20px 24px; }
+    .totales { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .total { padding: 8px 14px; border-radius: 6px; font-weight: 650; }
+    .total.cuadra, td.cuadra, .total.ok, td.ok { background: var(--ok-fondo); color: #0f4d27; }
+    .total.explicada, td.explicada { background: var(--aviso-fondo); color: #5c3d00; }
+    .total.falla, td.falla { background: var(--mal-fondo); color: #7a1610; }
+    .tabla td.nota { white-space: normal; text-align: left; min-width: 260px; color: var(--texto-suave); }
+    .tabla td.etq { white-space: normal; min-width: 180px; }
+    .bloque-titulo { margin: 26px 0 12px; font-size: 1.3rem; color: var(--acento); }
+    @media (max-width: 960px) { .pruebas { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <div id="avisoCarga" class="aviso-carga" role="alert" style="background:#fdecea;color:#7a1610;border:2px solid #b42318;border-radius:8px;padding:12px 16px;margin:12px;font:16px/1.45 system-ui,Arial,sans-serif">
+    <strong>La página no ha podido cargar sus archivos.</strong>
+    Si la has abierto desde dentro del ZIP, primero descomprímelo: clic derecho sobre el ZIP y «Extraer todo…».
+    Después abre pruebas.html desde la carpeta descomprimida, donde también deben estar las carpetas css, js y data.
+  </div>
+  <header class="cabecera">
+    <div class="cabecera__texto">
+      <h1>Pruebas con los ejercicios de los apuntes</h1>
+      <p class="cabecera__sub">Transporte y Manutención Industrial · Máster Universitario en Ingeniería Industrial · Universidad de Salamanca</p>
+      <p class="cabecera__autor">Alberto Jorge Lorenzo · Método de los apuntes de la asignatura (ISO 5048 / DIN 22101)</p>
+    </div>
+    <nav class="barra" aria-label="Acciones"><a class="boton" href="index.html">Volver a la aplicación</a></nav>
+  </header>
+  <main class="pruebas">
+    <h2 class="bloque-titulo">1. Comparación con los ejercicios resueltos</h2>
+    <div class="tarjeta">
+      <h2>Cómo leer este bloque</h2>
+      <p>Cada valor de la app, redondeado a los decimales de los apuntes, se compara con el valor publicado.</p>
+      <p><strong>Cuadra</strong>: la app da lo mismo que los apuntes. <strong>Diferencia explicada</strong>: los apuntes redondean pasos intermedios o tienen una errata; la app da el valor correcto, que se indica y se justifica en la nota. <strong>Falla</strong>: no coincide con ninguno (no debería aparecer nunca).</p>
+      <div class="totales" id="totales"></div>
+    </div>
+    <div id="casos"></div>
+
+    <h2 class="bloque-titulo">2. Pruebas de robustez</h2>
+    <div class="tarjeta">
+      <h2>Cómo leer este bloque</h2>
+      <p>Comprueban cómo responde la app a datos incompletos o fuera de rango, a una cinta descendente, a las posibles erratas de las tablas, a una velocidad fijada a mano y a números escritos con punto de miles. Son los casos de las dos revisiones independientes: los de la versión 1.0, corregidos en la versión 2.0, y los de la versión 2.0 (puntos M1 y M4), corregidos en la versión 3.0. Cada comprobación se cumple o no se cumple.</p>
+      <div class="totales" id="totalesRobustez"></div>
+    </div>
+    <div id="casosRobustez"></div>
+  </main>
+  <footer class="pie"><p id="origenDatos"></p></footer>
+  <script src="js/datos-respaldo.js"></script>
+  <script src="js/calculos.js"></script>
+  <script src="js/pruebas.js"></script>
+  <script>
+    (function () {
+      if (!window.Calculos || !window.Pruebas) return;   // faltan los scripts: se queda visible el aviso
+      var aviso = document.getElementById('avisoCarga');
+      if (aviso) aviso.parentNode.removeChild(aviso);
+      function fmt(x, d) {
+        if (typeof x !== 'number' || !isFinite(x)) return '-';
+        var s = Math.abs(x).toFixed(d).split('.'); var ent = s[0];
+        if (ent.length >= 5) ent = ent.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        return (x < 0 ? '−' : '') + ent + (s[1] ? ',' + s[1] : '');
+      }
+      function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+      var nombres = { cuadra: 'Cuadra', explicada: 'Diferencia explicada', falla: 'Falla' };
+      function pintar(datos, origen) {
+        // 1. Comparación con los apuntes
+        var r = window.Pruebas.ejecutar(window.Calculos, datos);
+        document.getElementById('totales').innerHTML = ['cuadra', 'explicada', 'falla'].map(function (k) {
+          return '<span class="total ' + k + '">' + nombres[k] + ': ' + r.total[k] + '</span>';
+        }).join('');
+        document.getElementById('casos').innerHTML = r.casos.map(function (c) {
+          return '<section class="tarjeta"><h2>' + esc(c.fuente) + '</h2><p class="ayuda">' + esc(c.descripcion) + '</p><div class="tabla-envoltorio"><table class="tabla">' +
+            '<thead><tr><th>Magnitud</th><th>Apuntes</th><th>App</th><th>Unidad</th><th>Estado</th><th>Nota</th></tr></thead><tbody>' +
+            c.filas.map(function (f) {
+              return '<tr><td class="etq">' + esc(f.etiqueta) + '</td><td>' + fmt(f.apuntes, f.decimales) + '</td><td>' + fmt(f.app, f.decimales) +
+                '</td><td>' + esc(f.unidad) + '</td><td class="' + f.estado + '">' + nombres[f.estado] + '</td><td class="nota">' + esc(f.nota || '') + '</td></tr>';
+            }).join('') + '</tbody></table></div></section>';
+        }).join('');
+        // 2. Robustez
+        var rb = window.Pruebas.ejecutarRobustez(window.Calculos, datos);
+        document.getElementById('totalesRobustez').innerHTML =
+          '<span class="total ok">Se cumple: ' + rb.total.ok + '</span><span class="total falla">No se cumple: ' + rb.total.falla + '</span>';
+        document.getElementById('casosRobustez').innerHTML = rb.casos.map(function (c) {
+          return '<section class="tarjeta"><h2>' + (c.id === 'menores' || c.id === '2.0' ? '' : 'Punto ' + esc(c.id) + ': ') + esc(c.descripcion) + '</h2><div class="tabla-envoltorio"><table class="tabla">' +
+            '<thead><tr><th>Comprobación</th><th>Estado</th><th>Detalle</th></tr></thead><tbody>' +
+            c.filas.map(function (f) {
+              return '<tr><td class="etq">' + esc(f.etiqueta) + '</td><td class="' + (f.ok ? 'ok' : 'falla') + '">' + (f.ok ? 'Se cumple' : 'No se cumple') + '</td><td class="nota">' + esc(f.detalle) + '</td></tr>';
+            }).join('') + '</tbody></table></div></section>';
+        }).join('');
+        document.getElementById('origenDatos').textContent = 'Datos cargados de ' + origen + '.';
+      }
+      var respaldo = 'js/datos-respaldo.js (copia de data/datos.json)';
+      // Abierta con doble clic (file://), los navegadores no dejan usar fetch: se usa directamente la copia.
+      if (location.protocol === 'file:' && window.DATOS_RESPALDO) { pintar(window.DATOS_RESPALDO, respaldo); return; }
+      fetch('data/datos.json', { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+        .then(function (d) { pintar(d, 'data/datos.json'); })
+        .catch(function () { pintar(window.DATOS_RESPALDO, respaldo); });
+    })();
+  </script>
+</body>
+</html>

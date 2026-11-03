@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dimensionado de cintas transportadoras</title>
+  <meta name="description" content="Aplicación web para dimensionar cintas transportadoras con el método de la asignatura Transporte y Manutención Industrial (ISO 5048 / DIN 22101).">
+  <meta name="author" content="Alberto Jorge Lorenzo">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div id="avisoCarga" class="aviso-carga" role="alert" style="background:#fdecea;color:#7a1610;border:2px solid #b42318;border-radius:8px;padding:12px 16px;margin:12px;font:16px/1.45 system-ui,Arial,sans-serif">
+    <strong>La aplicación no ha podido cargar sus archivos.</strong>
+    Si has abierto index.html desde dentro del ZIP, primero descomprímelo: clic derecho sobre el ZIP y «Extraer todo…».
+    Después abre index.html desde la carpeta descomprimida, donde también deben estar las carpetas css, js y data.
+  </div>
+  <header class="cabecera">
+    <div class="cabecera__texto">
+      <h1>Dimensionado de cintas transportadoras</h1>
+      <p class="cabecera__sub">Transporte y Manutención Industrial · Máster Universitario en Ingeniería Industrial · Universidad de Salamanca</p>
+      <p class="cabecera__autor">Alberto Jorge Lorenzo · Método de los apuntes de la asignatura (ISO 5048 / DIN 22101)</p>
+    </div>
+    <nav class="barra" aria-label="Acciones">
+      <label class="barra__ejemplo">Ejemplo
+        <select id="selEjemplo" aria-describedby="notaEjemplo"></select>
+      </label>
+      <button type="button" id="btnImprimir" class="boton">Imprimir o guardar en PDF</button>
+      <a class="boton boton--secundario" href="pruebas.html">Pruebas con los ejercicios</a>
+      <a class="boton boton--secundario solo-movil" href="#resultados">Ver resultados</a>
+    </nav>
+  </header>
+
+  <p id="notaEjemplo" class="nota-ejemplo" role="note"></p>
+
+  <main class="disposicion">
+    <form id="formulario" class="entradas" novalidate autocomplete="off">
+
+      <fieldset class="bloque">
+        <legend>Modo de cálculo</legend>
+        <div class="opciones-modo">
+          <label class="radio"><input type="radio" name="modo" value="diseno" checked> Diseño completo
+            <small>La app elige ancho y velocidad a partir del material y la capacidad.</small></label>
+          <label class="radio"><input type="radio" name="modo" value="comprobacion"> Comprobación con carga conocida
+            <small>Se conocen el ancho, la velocidad y la masa de material por metro (como en los ejemplos de T1_6).</small></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloque solo-diseno" id="fsMaterial">
+        <legend><span class="num">1</span> Material</legend>
+        <div class="campo campo--ancho">
+          <label for="selMaterial">Material (T1_3.2)</label>
+          <select id="selMaterial"></select>
+        </div>
+        <div class="rejilla">
+          <div class="campo">
+            <label for="densidad">Densidad aparente ρ <span class="ud">t/m³</span></label>
+            <input id="densidad" inputmode="decimal">
+            <small class="ayuda" id="ayudaDensidad"></small>
+          </div>
+          <div class="campo">
+            <label for="reposo">Ángulo de reposo <span class="ud">°</span></label>
+            <input id="reposo" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="abrasividad">Abrasividad</label>
+            <select id="abrasividad">
+              <option value="">Sin dato</option>
+              <option value="A">A: no abrasivo</option>
+              <option value="B">B: poco abrasivo</option>
+              <option value="C">C: muy abrasivo</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="betaModo">Ángulo de sobrecarga β <span class="ud">°</span></label>
+            <div class="combo">
+              <select id="betaModo"><option value="auto">Por fluidez</option><option value="manual">A mano</option></select>
+              <input id="beta" inputmode="decimal" aria-label="Ángulo de sobrecarga a mano">
+            </div>
+            <small class="ayuda" id="ayudaBeta"></small>
+          </div>
+          <div class="campo">
+            <label for="clase">Clase de material (tabla 1.3)</label>
+            <select id="clase">
+              <option value="auto">Automática</option>
+              <option value="A">A: ligero, no abrasivo</option>
+              <option value="B">B: no o poco abrasivo</option>
+              <option value="C">C: medianamente abrasivo</option>
+              <option value="D">D: muy abrasivo</option>
+            </select>
+            <small class="ayuda" id="ayudaClase"></small>
+          </div>
+          <div class="campo">
+            <label for="tamMax">Tamaño máximo de terrón <span class="ud">mm</span></label>
+            <input id="tamMax" inputmode="decimal">
+          </div>
+          <div class="campo campo--ancho">
+            <label for="granulometria">Granulometría</label>
+            <select id="granulometria">
+              <option value="uniforme">Uniforme (tamaño homogéneo)</option>
+              <option value="mezcla">Mezcla: 10 % gruesos y 90 % finos</option>
+              <option value="gruesos">Todo gruesos (100 %)</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloque" id="fsTrazado">
+        <legend><span class="num">2</span> Trazado y capacidad</legend>
+        <div class="rejilla">
+          <div class="campo solo-diseno">
+            <label for="Q">Capacidad Q <span class="ud">t/h</span></label>
+            <input id="Q" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="L">Longitud entre tambores L <span class="ud">m</span></label>
+            <input id="L" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="H">Desnivel H <span class="ud">m</span></label>
+            <input id="H" inputmode="decimal">
+            <small class="ayuda">Positivo si sube, negativo si baja.</small>
+          </div>
+          <div class="campo solo-diseno">
+            <label for="rodillos">Rodillos por estación</label>
+            <select id="rodillos">
+              <option value="1">1 (plana)</option>
+              <option value="2">2 (en V)</option>
+              <option value="3">3 (en artesa)</option>
+            </select>
+          </div>
+          <div class="campo solo-diseno">
+            <label for="lambda">Ángulo de artesa λ <span class="ud">°</span></label>
+            <input id="lambda" inputmode="decimal">
+          </div>
+          <div class="campo solo-diseno">
+            <label for="metodoCapacidad">Método de capacidad</label>
+            <select id="metodoCapacidad">
+              <option value="masico">Flujo másico (fórmulas de la sección)</option>
+              <option value="volumetrico">Flujo volumétrico (tablas Rulmeca)</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="selB">Ancho de banda B <span class="ud">mm</span></label>
+            <select id="selB"></select>
+          </div>
+          <div class="campo">
+            <label for="selV">Velocidad v <span class="ud">m/s</span></label>
+            <div class="combo">
+              <select id="selV"></select>
+              <input id="vOtra" inputmode="decimal" aria-label="Velocidad a mano">
+            </div>
+          </div>
+          <div class="campo solo-comprobacion">
+            <label for="qG">Masa de material qG <span class="ud">kg/m</span></label>
+            <input id="qG" inputmode="decimal">
+          </div>
+          <div class="campo solo-diseno solo-tres">
+            <label for="l3Modo">Rodillo central l3 <span class="ud">mm</span></label>
+            <div class="combo">
+              <select id="l3Modo"><option value="auto">Figura 1.1</option><option value="manual">A mano</option></select>
+              <input id="l3" inputmode="decimal" aria-label="Longitud del rodillo central a mano">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloque" id="fsBanda">
+        <legend><span class="num">3</span> Banda y rodillos</legend>
+        <div class="rejilla">
+          <div class="campo">
+            <label for="qb">Masa de la banda qb <span class="ud">kg/m</span></label>
+            <input id="qb" inputmode="decimal">
+            <small class="ayuda" id="ayudaQb"></small>
+          </div>
+          <div class="campo">
+            <label for="modoRodillos">Masa de los rodillos</label>
+            <select id="modoRodillos">
+              <option value="porMetro">qRO y qRU por metro</option>
+              <option value="porEstacion">Masa por estación</option>
+            </select>
+          </div>
+          <div class="campo por-metro">
+            <label for="qRO">Rodillos superiores qRO <span class="ud">kg/m</span></label>
+            <input id="qRO" inputmode="decimal">
+            <small class="ayuda">Si solo conoces qR = qRO + qRU, ponlo aquí y deja qRU = 0.</small>
+          </div>
+          <div class="campo por-metro">
+            <label for="qRU">Rodillos inferiores qRU <span class="ud">kg/m</span></label>
+            <input id="qRU" inputmode="decimal">
+          </div>
+          <div class="campo por-estacion">
+            <label for="mRO">Masa giratoria estación superior <span class="ud">kg</span></label>
+            <input id="mRO" inputmode="decimal">
+          </div>
+          <div class="campo por-estacion">
+            <label for="mRU">Masa giratoria estación inferior <span class="ud">kg</span></label>
+            <input id="mRU" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="lSup">Separación rodillos superiores <span class="ud">m</span></label>
+            <input id="lSup" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="lInf">Separación rodillos inferiores <span class="ud">m</span></label>
+            <input id="lInf" inputmode="decimal">
+          </div>
+          <small class="ayuda campo--ancho" id="ayudaSeparacion"></small>
+          <div class="campo campo--ancho">
+            <label for="selF">Coeficiente de resistencia f</label>
+            <div class="combo">
+              <select id="selF"></select>
+              <input id="fOtro" inputmode="decimal" aria-label="Coeficiente f a mano">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloque" id="fsResistencias">
+        <legend><span class="num">4</span> Resistencias al avance</legend>
+        <div class="rejilla">
+          <div class="campo campo--ancho">
+            <label for="metodoResistencias">Método</label>
+            <select id="metodoResistencias">
+              <option value="auto">Automático: global si L ≤ 80 m, simplificado con C si L &gt; 80 m</option>
+              <option value="global">Global (suma de resistencias)</option>
+              <option value="simplificado">Simplificado con coeficiente C</option>
+            </select>
+          </div>
+          <div class="campo campo--ancho solo-simplificado">
+            <label for="tablaC">Coeficiente C</label>
+            <div class="combo">
+              <select id="tablaC">
+                <option value="DIN">Tabla DIN 22101</option>
+                <option value="UC3M">Tabla UC3M (T1_4.1)</option>
+                <option value="manual">A mano</option>
+              </select>
+              <input id="C" inputmode="decimal" aria-label="Coeficiente C a mano">
+            </div>
+          </div>
+          <div class="campo solo-global">
+            <label for="v0">Velocidad de entrada del material v0 <span class="ud">m/s</span></label>
+            <input id="v0" inputmode="decimal">
+          </div>
+          <div class="campo solo-global">
+            <label for="FNtamb">Otras resistencias secundarias FN <span class="ud">N</span></label>
+            <input id="FNtamb" inputmode="decimal">
+            <small class="ayuda">Tambores no motrices, faldones…</small>
+          </div>
+          <div class="campo">
+            <label for="FS1">Especiales principales FS1 <span class="ud">N</span></label>
+            <input id="FS1" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="FS2">Especiales secundarias FS2 <span class="ud">N</span></label>
+            <input id="FS2" inputmode="decimal">
+            <small class="ayuda">Limpiadores, rascadores…</small>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloque" id="fsAccionamiento">
+        <legend><span class="num">5</span> Accionamiento</legend>
+        <div class="rejilla">
+          <div class="campo">
+            <label for="eta">Rendimiento motor-reductor η</label>
+            <input id="eta" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="D">Diámetro del tambor motriz <span class="ud">mm</span></label>
+            <input id="D" inputmode="decimal" list="listaDiametros">
+            <datalist id="listaDiametros"></datalist>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloque" id="fsTensiones">
+        <legend><span class="num">6</span> Tensiones</legend>
+        <div class="rejilla">
+          <div class="campo campo--ancho">
+            <label for="selMu">Coeficiente de rozamiento tambor-banda μ</label>
+            <div class="combo">
+              <select id="selMu"></select>
+              <input id="muOtro" inputmode="decimal" aria-label="Coeficiente de rozamiento a mano">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="theta">Ángulo de abrazamiento θ <span class="ud">°</span></label>
+            <input id="theta" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="hrelMax">Flecha relativa máxima <span class="ud">%</span></label>
+            <input id="hrelMax" inputmode="decimal">
+          </div>
+          <div class="campo">
+            <label for="T2modo">Tensión del ramal flojo T2</label>
+            <div class="combo">
+              <select id="T2modo"><option value="auto">Automática</option><option value="manual">A mano (N)</option></select>
+              <input id="T2" inputmode="decimal" aria-label="T2 a mano en N">
+            </div>
+          </div>
+          <div class="campo t2-auto">
+            <label for="margenAdh">Margen sobre la adherencia <span class="ud">%</span></label>
+            <input id="margenAdh" inputmode="decimal">
+          </div>
+          <label class="check campo--ancho"><input type="checkbox" id="chkLocales"> Comprobar la flecha con tensiones locales (si no, con T2, como en los apuntes)</label>
+          <div class="campo locales">
+            <label for="TlocalSup">Tensión local ramal superior <span class="ud">N</span></label>
+            <input id="TlocalSup" inputmode="decimal">
+          </div>
+          <div class="campo locales">
+            <label for="TlocalInf">Tensión local ramal inferior <span class="ud">N</span></label>
+            <input id="TlocalInf" inputmode="decimal">
+          </div>
+          <label class="check campo--ancho"><input type="checkbox" id="chkFu"> Introducir la fuerza periférica Fu a mano</label>
+          <div class="campo fu-manual">
+            <label for="FuManual">Fu <span class="ud">N</span></label>
+            <input id="FuManual" inputmode="decimal">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="bloque" id="fsCapas">
+        <legend><span class="num">7</span> Banda: número de capas</legend>
+        <div class="rejilla">
+          <div class="campo">
+            <label for="selR">Resistencia por capa R <span class="ud">N/mm</span></label>
+            <div class="combo">
+              <select id="selR"></select>
+              <input id="ROtro" inputmode="decimal" aria-label="Resistencia por capa a mano">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="zMin">Mínimo constructivo de capas</label>
+            <input id="zMin" inputmode="numeric">
+          </div>
+          <div class="campo">
+            <label for="zModo">Número de capas z</label>
+            <div class="combo">
+              <select id="zModo"><option value="auto">Automático</option><option value="manual">A mano</option></select>
+              <input id="z" inputmode="numeric" aria-label="Número de capas a mano">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <section class="resultados" id="resultados" aria-label="Resultados">
+      <div id="errores"></div>
+      <div id="resumen"></div>
+      <div id="comprobaciones"></div>
+      <div id="avisos"></div>
+      <div id="desarrollo"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Método y tablas: apuntes T1_6 y T1_4.1 de la asignatura (ISO 5048 / DIN 22101), tablas Rulmeca (T1_3.2 y T1_4.2), Phoenix (tabla C de DIN 22101), UC3M y catálogo Rotrans. Las fuentes de cada tabla están en <code>data/datos.json</code> y en el Readme.</p>
+    <p id="origenDatos"></p>
+  </footer>
+
+  <script src="js/datos-respaldo.js"></script>
+  <script src="js/calculos.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

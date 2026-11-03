@@ -1,0 +1,2839 @@
+{
+ "meta": {
+  "titulo": "Datos y tablas para el dimensionado de cintas transportadoras",
+  "autor": "Alberto Jorge Lorenzo",
+  "version": "2.0",
+  "fecha": "2026-11-03",
+  "nota": "Cada tabla indica su fuente (documento de la asignatura y página o tabla). Las unidades se indican en cada clave."
+ },
+ "constantes": {
+  "g": 9.81,
+  "fuente": "T1_6 (todos los ejemplos usan g = 9,81 m/s2)"
+ },
+ "velocidadesNormalizadas": {
+  "fuente": "T1_6, tabla 1.4 (DIN 22101)",
+  "unidad": "m/s",
+  "valores": [
+   0.66,
+   0.84,
+   1.05,
+   1.31,
+   1.68,
+   2.09,
+   2.62,
+   3.35,
+   4.19,
+   5.24
+  ]
+ },
+ "factorInclinacion": {
+  "fuente": "T1_6, tabla 1.1",
+  "nota": "Interpolación lineal (T1_6, ejercicio 13). Por debajo de 2° se toma K = 1,00.",
+  "inclinacionGrados": [
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14,
+   16,
+   18,
+   20
+  ],
+  "K": [
+   1.0,
+   0.99,
+   0.98,
+   0.97,
+   0.95,
+   0.93,
+   0.91,
+   0.89,
+   0.85,
+   0.81
+  ]
+ },
+ "factorTerron": {
+  "fuente": "T1_6, tabla 1.2 (aplicación: T1_4.1, ejemplo 1: B >= factor x tamaño máximo)",
+  "filas": [
+   {
+    "betaMax": 20,
+    "mezcla": 3,
+    "todoGruesos": 5
+   },
+   {
+    "betaMax": 30,
+    "mezcla": 6,
+    "todoGruesos": 10
+   }
+  ]
+ },
+ "anchosVelocidades": {
+  "fuente": "T1_6, tabla 1.3",
+  "unidad": "B y tamaños en mm, velocidades en m/s",
+  "clases": {
+   "A": "Materiales ligeros, deslizables y no abrasivos, peso específico 0,5-1 t/m3",
+   "B": "Materiales no abrasivos o muy poco abrasivos, tamaño medio, 1-1,5 t/m3",
+   "C": "Materiales medianamente abrasivos y pesados, 1,5-2 t/m3",
+   "D": "Materiales muy abrasivos, pesados y cortantes, más de 2 t/m3"
+  },
+  "filas": [
+   {
+    "B": 400,
+    "tamMaxUniforme": 50,
+    "tamMaxMixto": 100,
+    "vmax": {
+     "A": 2.62,
+     "B": 2.09,
+     "C": 2.09,
+     "D": 1.31
+    }
+   },
+   {
+    "B": 500,
+    "tamMaxUniforme": 75,
+    "tamMaxMixto": 150,
+    "vmax": {
+     "A": 2.62,
+     "B": 2.62,
+     "C": 2.09,
+     "D": 1.68
+    }
+   },
+   {
+    "B": 650,
+    "tamMaxUniforme": 125,
+    "tamMaxMixto": 200,
+    "vmax": {
+     "A": 3.35,
+     "B": 2.62,
+     "C": 2.62,
+     "D": 1.68
+    }
+   },
+   {
+    "B": 800,
+    "tamMaxUniforme": 170,
+    "tamMaxMixto": 300,
+    "vmax": {
+     "A": 3.35,
+     "B": 3.35,
+     "C": 2.62,
+     "D": 2.09
+    }
+   },
+   {
+    "B": 1000,
+    "tamMaxUniforme": 250,
+    "tamMaxMixto": 400,
+    "vmax": {
+     "A": 4.19,
+     "B": 3.35,
+     "C": 3.35,
+     "D": 2.09
+    }
+   },
+   {
+    "B": 1200,
+    "tamMaxUniforme": 350,
+    "tamMaxMixto": 500,
+    "vmax": {
+     "A": 4.19,
+     "B": 3.35,
+     "C": 3.35,
+     "D": 2.62
+    }
+   },
+   {
+    "B": 1400,
+    "tamMaxUniforme": 400,
+    "tamMaxMixto": 600,
+    "vmax": {
+     "A": 4.19,
+     "B": 3.35,
+     "C": 3.35,
+     "D": 3.35
+    }
+   },
+   {
+    "B": 1600,
+    "tamMaxUniforme": 450,
+    "tamMaxMixto": 650,
+    "vmax": {
+     "A": 4.19,
+     "B": 4.19,
+     "C": 3.35,
+     "D": 3.35
+    }
+   },
+   {
+    "B": 1800,
+    "tamMaxUniforme": 500,
+    "tamMaxMixto": 700,
+    "vmax": {
+     "A": 4.19,
+     "B": 4.19,
+     "C": 3.35,
+     "D": 3.35
+    }
+   },
+   {
+    "B": 2000,
+    "tamMaxUniforme": 550,
+    "tamMaxMixto": 750,
+    "vmax": {
+     "A": 5.24,
+     "B": 4.19,
+     "C": 3.35,
+     "D": 3.35
+    }
+   },
+   {
+    "B": 2200,
+    "tamMaxUniforme": 600,
+    "tamMaxMixto": 800,
+    "vmax": {
+     "A": 5.24,
+     "B": 5.24,
+     "C": 4.19,
+     "D": 4.19
+    }
+   }
+  ]
+ },
+ "longitudRodillos": {
+  "fuente": "T1_6, figura 1.1 (longitudes de rodillo de un fabricante)",
+  "unidad": "mm",
+  "nota": "Con 1 o 2 rodillos l3 = 0 (T1_6, cap. 1); solo se usa la columna de 3 rodillos.",
+  "filas": [
+   {
+    "B": 300,
+    "plano": 380,
+    "dos": 200,
+    "tres": null
+   },
+   {
+    "B": 400,
+    "plano": 500,
+    "dos": 250,
+    "tres": 160
+   },
+   {
+    "B": 500,
+    "plano": 600,
+    "dos": 315,
+    "tres": 200
+   },
+   {
+    "B": 600,
+    "plano": 700,
+    "dos": 340,
+    "tres": 250
+   },
+   {
+    "B": 650,
+    "plano": 750,
+    "dos": 380,
+    "tres": 250
+   },
+   {
+    "B": 800,
+    "plano": 950,
+    "dos": 465,
+    "tres": 315
+   },
+   {
+    "B": 1000,
+    "plano": 1150,
+    "dos": 600,
+    "tres": 380
+   },
+   {
+    "B": 1200,
+    "plano": 1400,
+    "dos": 700,
+    "tres": 465
+   },
+   {
+    "B": 1400,
+    "plano": 1600,
+    "dos": 800,
+    "tres": 530
+   },
+   {
+    "B": 1600,
+    "plano": 1800,
+    "dos": 900,
+    "tres": 600
+   },
+   {
+    "B": 1800,
+    "plano": 2000,
+    "dos": 1000,
+    "tres": 670
+   },
+   {
+    "B": 2000,
+    "plano": 2200,
+    "dos": 1100,
+    "tres": 750
+   },
+   {
+    "B": 2200,
+    "plano": 2500,
+    "dos": 1250,
+    "tres": 800
+   }
+  ]
+ },
+ "capacidadVolumetrica": {
+  "fuente": "T1_4.2: tablas Rulmeca 5a, 5b y 5c (IVT en m3/h para v = 1 m/s)",
+  "beta": [
+   5,
+   10,
+   20,
+   25,
+   30
+  ],
+  "nota": "Se interpola linealmente en beta. Solo se admiten los anchos y ángulos de artesa tabulados.",
+  "plano": {
+   "lambda": [
+    0
+   ],
+   "anchos": {
+    "300": [
+     3.6,
+     7.5,
+     15.4,
+     20.1,
+     25.2
+    ],
+    "400": [
+     7.5,
+     15.1,
+     31.3,
+     39.9,
+     50.0
+    ],
+    "500": [
+     12.6,
+     25.2,
+     52.2,
+     66.6,
+     83.5
+    ],
+    "650": [
+     22.3,
+     45.0,
+     93.2,
+     119.5,
+     149.4
+    ],
+    "800": [
+     35.2,
+     70.9,
+     146.5,
+     187.5,
+     198.3
+    ],
+    "1000": [
+     56.8,
+     114.4,
+     235.8,
+     301.6,
+     377.2
+    ],
+    "1200": [
+     83.8,
+     167.7,
+     346.3,
+     436.6,
+     554.0
+    ],
+    "1400": [
+     115.5,
+     231.4,
+     478.0,
+     611.6,
+     763.2
+    ],
+    "1600": [
+     152.6,
+     305.6,
+     630.7,
+     807.1,
+     1008.7
+    ],
+    "1800": [
+     194.7,
+     389.8,
+     804.9,
+     1029.9,
+     1287.0
+    ],
+    "2000": [
+     241.9,
+     484.2,
+     1000.0,
+     1279.4,
+     1599.1
+    ],
+    "2200": [
+     295.5,
+     591.1,
+     1220.4,
+     1560.8,
+     1949.4
+    ],
+    "2400": [
+     353.1,
+     706.3,
+     1458.3,
+     1865.1,
+     2329.5
+    ],
+    "2600": [
+     415.9,
+     831.9,
+     1717.9,
+     2197.1,
+     2744.1
+    ],
+    "2800": [
+     484.0,
+     968.0,
+     1998.7,
+     2556.3,
+     3192.8
+    ],
+    "3000": [
+     557.1,
+     1114.2,
+     2300.4,
+     2942.2,
+     3674.8
+    ]
+   }
+  },
+  "dosRodillos": {
+   "lambda": [
+    20
+   ],
+   "anchos": {
+    "300": [
+     17.6,
+     20.5,
+     28.8,
+     32.0,
+     36.3
+    ],
+    "400": [
+     34.5,
+     41.4,
+     55.8,
+     63.7,
+     72.0
+    ],
+    "500": [
+     57.6,
+     68.7,
+     92.8,
+     105.8,
+     119.8
+    ],
+    "650": [
+     102.9,
+     123.1,
+     165.9,
+     189.3,
+     214.5
+    ],
+    "800": [
+     175.6,
+     192.9,
+     260.2,
+     296.6,
+     336.2
+    ],
+    "1000": [
+     317.1,
+     310.6,
+     418.6,
+     477.3,
+     541.0
+    ]
+   }
+  },
+  "tresRodillos": {
+   "lambda": [
+    20,
+    25,
+    30,
+    35,
+    45
+   ],
+   "anchos": {
+    "300": [
+     [
+      13.3,
+      15.1,
+      17.2,
+      18.7,
+      21.6
+     ],
+     [
+      16.9,
+      18.7,
+      20.5,
+      21.6,
+      24.4
+     ],
+     [
+      24.4,
+      26.2,
+      27.7,
+      28.8,
+      30.6
+     ],
+     [
+      27.7,
+      30.2,
+      31.6,
+      32.4,
+      33.8
+     ],
+     [
+      33.4,
+      34.9,
+      36.0,
+      36.3,
+      37.8
+     ]
+    ],
+    "400": [
+     [
+      28.0,
+      32.4,
+      36.6,
+      39.6,
+      45.7
+     ],
+     [
+      35.2,
+      29.2,
+      43.2,
+      45.3,
+      51.4
+     ],
+     [
+      50.4,
+      54.3,
+      57.2,
+      59.4,
+      66.3
+     ],
+     [
+      56.8,
+      62.2,
+      65.1,
+      66.6,
+      69.8
+     ],
+     [
+      67.7,
+      70.9,
+      73.4,
+      74.5,
+      77.0
+     ]
+    ],
+    "500": [
+     [
+      47.8,
+      55.8,
+      62.6,
+      68.0,
+      78.4
+     ],
+     [
+      60.1,
+      67.3,
+      73.4,
+      78.4,
+      87.4
+     ],
+     [
+      85.3,
+      91.8,
+      97.2,
+      101.1,
+      106.9
+     ],
+     [
+      96.1,
+      104.7,
+      109.8,
+      112.6,
+      117.7
+     ],
+     [
+      114.1,
+      119.1,
+      123.8,
+      126.0,
+      129.6
+     ]
+    ],
+    "650": [
+     [
+      87.8,
+      101.8,
+      114.4,
+      124.9,
+      143.2
+     ],
+     [
+      109.4,
+      122.4,
+      134.2,
+      142.9,
+      159.1
+     ],
+     [
+      154.4,
+      166.3,
+      176.4,
+      183.6,
+      193.6
+     ],
+     [
+      174.2,
+      189.7,
+      198.7,
+      204.4,
+      212.4
+     ],
+     [
+      205.5,
+      215.2,
+      223.5,
+      227.8,
+      233.6
+     ]
+    ],
+    "800": [
+     [
+      139.6,
+      162.0,
+      182.1,
+      198.3,
+      227.1
+     ],
+     [
+      173.6,
+      194.4,
+      212.7,
+      226.8,
+      252.0
+     ],
+     [
+      244.0,
+      262.8,
+      278.2,
+      290.1,
+      306.0
+     ],
+     [
+      275.0,
+      299.1,
+      313.2,
+      322.9,
+      334.8
+     ],
+     [
+      324.0,
+      339.4,
+      352.4,
+      359.2,
+      367.9
+     ]
+    ],
+    "1000": [
+     [
+      227.1,
+      263.8,
+      296.2,
+      322.9,
+      368.6
+     ],
+     [
+      281.1,
+      315.3,
+      345.6,
+      368.6,
+      408.6
+     ],
+     [
+      394.9,
+      425.5,
+      450.7,
+      469.8,
+      494.6
+     ],
+     [
+      444.9,
+      483.8,
+      506.5,
+      522.0,
+      541.0
+     ],
+     [
+      523.4,
+      548.6,
+      569.1,
+      580.6,
+      594.0
+     ]
+    ],
+    "1200": [
+     [
+      335.8,
+      389.8,
+      438.1,
+      477.0,
+      545.0
+     ],
+     [
+      415.0,
+      465.4,
+      510.1,
+      543.9,
+      602.6
+     ],
+     [
+      581.7,
+      627.1,
+      664.2,
+      692.6,
+      728.2
+     ],
+     [
+      655.2,
+      712.8,
+      745.9,
+      768.9,
+      795.9
+     ],
+     [
+      770.4,
+      807.4,
+      837.7,
+      855.0,
+      873.3
+     ]
+    ],
+    "1400": [
+     [
+      465.8,
+      540.7,
+      606.9,
+      661.3,
+      753.8
+     ],
+     [
+      574.9,
+      644.7,
+      706.3,
+      753.4,
+      834.1
+     ],
+     [
+      804.9,
+      867.6,
+      918.7,
+      957.9,
+      1006.9
+     ],
+     [
+      906.4,
+      985.3,
+      1031.4,
+      1063.4,
+      1100.1
+     ],
+     [
+      1064.8,
+      1116.3,
+      1157.7,
+      1181.8,
+      1206.3
+     ]
+    ],
+    "1600": [
+     [
+      616.6,
+      716.0,
+      803.8,
+      875.5,
+      997.5
+     ],
+     [
+      760.6,
+      853.2,
+      934.5,
+      997.2,
+      1102.6
+     ],
+     [
+      1063.8,
+      1146.9,
+      1214.2,
+      1266.4,
+      1330.2
+     ],
+     [
+      1198.0,
+      1302.1,
+      1363.3,
+      1405.4,
+      1452.9
+     ],
+     [
+      1432.8,
+      1474.9,
+      1529.6,
+      1561.3,
+      1593.0
+     ]
+    ],
+    "1800": [
+     [
+      788.7,
+      915.4,
+      1027.8,
+      1119.6,
+      1274.7
+     ],
+     [
+      972.3,
+      1090.8,
+      1194.4,
+      1274.4,
+      1409.0
+     ],
+     [
+      1353.2,
+      1465.2,
+      1551.2,
+      1617.8,
+      1698.8
+     ],
+     [
+      1530.7,
+      1663.2,
+      1740.0,
+      1794.9,
+      1854.7
+     ],
+     [
+      1796.4,
+      1883.1,
+      1953.0,
+      1993.6,
+      2032.9
+     ]
+    ],
+    "2000": [
+     [
+      981.7,
+      1139.7,
+      1279.8,
+      1393.9,
+      1586.5
+     ],
+     [
+      1209.9,
+      1357.2,
+      1486.4,
+      1586.1,
+      1752.8
+     ],
+     [
+      1690.0,
+      1822.3,
+      1929.2,
+      2012.0,
+      2112.1
+     ],
+     [
+      1903.6,
+      2068.2,
+      2164.6,
+      2231.6,
+      2305.8
+     ],
+     [
+      2233.4,
+      2341.4,
+      2427.8,
+      2478.6,
+      2526.8
+     ]
+    ],
+    "2200": [
+     [
+      1185.1,
+      1371.5,
+      1545.4,
+      1691.3,
+      1908.1
+     ],
+     [
+      1461.1,
+      1634.4,
+      1796.0,
+      1925.2,
+      2109.2
+     ],
+     [
+      2048.0,
+      2199.9,
+      2331.7,
+      2433.2,
+      2546.2
+     ],
+     [
+      2316.2,
+      2496.8,
+      2613.6,
+      2698.4,
+      2777.9
+     ],
+     [
+      2716.9,
+      2826.3,
+      2930.0,
+      2995.2,
+      3045.5
+     ]
+    ],
+    "2400": [
+     [
+      1403.7,
+      1632.9,
+      1832.9,
+      2010.7,
+      2275.5
+     ],
+     [
+      1730.5,
+      1945.8,
+      2130.1,
+      2288.8,
+      2514.2
+     ],
+     [
+      2431.0,
+      2618.6,
+      2776.3,
+      2896.2,
+      3041.2
+     ],
+     [
+      2749.4,
+      2972.1,
+      3112.2,
+      3211.8,
+      3317.9
+     ],
+     [
+      3225.0,
+      3364.4,
+      3488.7,
+      3565.0,
+      3636.4
+     ]
+    ],
+    "2600": [
+     [
+      1670.0,
+      1936.7,
+      2175.9,
+      2382.4,
+      2697.3
+     ],
+     [
+      2058.8,
+      2307.9,
+      2528.6,
+      2711.8,
+      2981.5
+     ],
+     [
+      2886.4,
+      3099.6,
+      3281.7,
+      3425.0,
+      3592.0
+     ],
+     [
+      3264.5,
+      3518.0,
+      3678.7,
+      3798.3,
+      3918.8
+     ],
+     [
+      3829.2,
+      3982.3,
+      4123.8,
+      4216.1,
+      4295.0
+     ]
+    ],
+    "2800": [
+     [
+      1930.8,
+      2240.7,
+      2517.8,
+      2759.4,
+      3119.7
+     ],
+     [
+      2380.3,
+      2670.1,
+      2926.0,
+      3141.0,
+      3448.4
+     ],
+     [
+      3342.6,
+      3592.0,
+      3805.5,
+      3971.5,
+      4168.4
+     ],
+     [
+      3780.0,
+      4076.9,
+      4265.9,
+      4404.3,
+      4547.7
+     ],
+     [
+      4433.9,
+      4615.0,
+      5185.6,
+      4888.7,
+      4984.2
+     ]
+    ],
+    "3000": [
+     [
+      2227.0,
+      2585.8,
+      2905.6,
+      3184.8,
+      3597.8
+     ],
+     [
+      2745.7,
+      3079.0,
+      3376.8,
+      3625.2,
+      3976.9
+     ],
+     [
+      3851.2,
+      4140.3,
+      4390.9,
+      4579.5,
+      4800.2
+     ],
+     [
+      4355.7,
+      4699.2,
+      4922.1,
+      5078.6,
+      5237.0
+     ],
+     [
+      5109.2,
+      5319.4,
+      5517.6,
+      5637.2,
+      5739.7
+     ]
+    ]
+   }
+  },
+  "posiblesErratas": [
+   {
+    "tabla": "plano",
+    "B": 800,
+    "lambda": 0,
+    "beta": 30,
+    "valor": 198.3,
+    "nota": "Rompe la proporción con beta = 25° (187,5); se esperaría unos 234."
+   },
+   {
+    "tabla": "dosRodillos",
+    "B": 1000,
+    "lambda": 20,
+    "beta": 5,
+    "valor": 317.1,
+    "nota": "Es mayor que el valor de beta = 10° (310,6)."
+   },
+   {
+    "tabla": "tresRodillos",
+    "B": 400,
+    "lambda": 25,
+    "beta": 10,
+    "valor": 29.2,
+    "nota": "Es menor que el valor de beta = 5° (32,4); probablemente 39,2."
+   },
+   {
+    "tabla": "tresRodillos",
+    "B": 2800,
+    "lambda": 30,
+    "beta": 30,
+    "valor": 5185.6,
+    "nota": "Es mayor que el valor de lambda = 35° (4888,7); probablemente 4785,6."
+   }
+  ]
+ },
+ "materiales": {
+  "fuente": "T1_3.2 (Rulmeca, tab. 2: propiedades físicas de los materiales)",
+  "unidad": "densidad aparente en t/m3; ángulo de reposo en grados",
+  "leyenda": {
+   "A": "no abrasivo / no corrosivo",
+   "B": "poco abrasivo / poco corrosivo",
+   "C": "muy abrasivo / muy corrosivo"
+  },
+  "lista": [
+   {
+    "nombre": "Alúmina",
+    "densidadMin": 0.8,
+    "densidadMax": 1.04,
+    "reposoMin": 22,
+    "reposoMax": 22,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Amianto mineral o roca",
+    "densidadMin": 1.296,
+    "densidadMax": 1.296,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Antracita",
+    "densidadMin": 0.96,
+    "densidadMax": 0.96,
+    "reposoMin": 27,
+    "reposoMax": 27,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Arcilla seca a trozos",
+    "densidadMin": 0.96,
+    "densidadMax": 1.2,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Arcilla seca fina",
+    "densidadMin": 1.6,
+    "densidadMax": 1.92,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Arena de fundición",
+    "densidadMin": 1.44,
+    "densidadMax": 1.6,
+    "reposoMin": 39,
+    "reposoMax": 39,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Arena húmeda",
+    "densidadMin": 1.75,
+    "densidadMax": 2.08,
+    "reposoMin": 45,
+    "reposoMax": 45,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Arena seca",
+    "densidadMin": 1.44,
+    "densidadMax": 1.76,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Asfalto fragmentado hasta 13 mm",
+    "densidadMin": 0.72,
+    "densidadMax": 0.72,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Asfalto para juntas de pavim.",
+    "densidadMin": 1.28,
+    "densidadMax": 1.36,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Azúcar de caña natural",
+    "densidadMin": 0.88,
+    "densidadMax": 1.04,
+    "reposoMin": 30,
+    "reposoMax": 30,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Azúcar de melaza de remolacha",
+    "densidadMin": 0.88,
+    "densidadMax": 1.04,
+    "reposoMin": 30,
+    "reposoMax": 30,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Azúcar en polvo",
+    "densidadMin": 0.8,
+    "densidadMax": 0.96,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Azufre fragmentado 13 mm",
+    "densidadMin": 0.8,
+    "densidadMax": 0.96,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "C"
+   },
+   {
+    "nombre": "Azufre fragmentado hasta 80 mm",
+    "densidadMin": 1.28,
+    "densidadMax": 1.36,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "C"
+   },
+   {
+    "nombre": "Baquelita fina",
+    "densidadMin": 0.48,
+    "densidadMax": 0.64,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Barita",
+    "densidadMin": 2.88,
+    "densidadMax": 2.88,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Bauxita en bruto",
+    "densidadMin": 1.28,
+    "densidadMax": 1.44,
+    "reposoMin": 31,
+    "reposoMax": 31,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Bauxita seca",
+    "densidadMin": 1.09,
+    "densidadMax": 1.09,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Bentonita natural",
+    "densidadMin": 0.8,
+    "densidadMax": 0.96,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Bicarbonato de sodio",
+    "densidadMin": 0.656,
+    "densidadMax": 0.656,
+    "reposoMin": 42,
+    "reposoMax": 42,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Bórax en bruto",
+    "densidadMin": 0.96,
+    "densidadMax": 1.04,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cal hasta 3 mm",
+    "densidadMin": 0.96,
+    "densidadMax": 0.96,
+    "reposoMin": 43,
+    "reposoMax": 43,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cal hidratada hasta 3 mm",
+    "densidadMin": 0.64,
+    "densidadMax": 0.64,
+    "reposoMin": 40,
+    "reposoMax": 40,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cal hidratada molida",
+    "densidadMin": 0.51,
+    "densidadMax": 0.64,
+    "reposoMin": 42,
+    "reposoMax": 42,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Caliza en polvo",
+    "densidadMin": 1.28,
+    "densidadMax": 1.36,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Caliza fragmentada",
+    "densidadMin": 1.36,
+    "densidadMax": 1.44,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Caña de azúcar cortada",
+    "densidadMin": 0.24,
+    "densidadMax": 0.29,
+    "reposoMin": 50,
+    "reposoMax": 50,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Caolín hasta 80 mm",
+    "densidadMin": 1.008,
+    "densidadMax": 1.008,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Carbón de calcio",
+    "densidadMin": 1.12,
+    "densidadMax": 1.28,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Carbón de leña",
+    "densidadMin": 0.29,
+    "densidadMax": 0.4,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Carbón graso en bruto",
+    "densidadMin": 0.72,
+    "densidadMax": 0.88,
+    "reposoMin": 38,
+    "reposoMax": 38,
+    "abrasividad": "A",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Carbón graso malla 50 mm",
+    "densidadMin": 0.8,
+    "densidadMax": 0.86,
+    "reposoMin": 45,
+    "reposoMax": 45,
+    "abrasividad": "A",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Carbón negro en polvo",
+    "densidadMin": 0.06,
+    "densidadMax": 0.11,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Carbón negro granulado",
+    "densidadMin": 0.32,
+    "densidadMax": 0.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Carbonato de bario",
+    "densidadMin": 1.152,
+    "densidadMax": 1.152,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Carborundo hasta 80 mm",
+    "densidadMin": 1.6,
+    "densidadMax": 1.6,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cemento en bruto",
+    "densidadMin": 1.6,
+    "densidadMax": 1.76,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cemento Portland suave",
+    "densidadMin": 0.96,
+    "densidadMax": 1.2,
+    "reposoMin": 39,
+    "reposoMax": 39,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Ceniza de carb. seco hasta 80 mm",
+    "densidadMin": 0.56,
+    "densidadMax": 0.64,
+    "reposoMin": 40,
+    "reposoMax": 40,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Ceniza de carb. trit. hasta 80 mm",
+    "densidadMin": 0.72,
+    "densidadMax": 0.8,
+    "reposoMin": 50,
+    "reposoMax": 50,
+    "abrasividad": "B",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Cenizas de sosa pesadas",
+    "densidadMin": 0.88,
+    "densidadMax": 1.04,
+    "reposoMin": 32,
+    "reposoMax": 32,
+    "abrasividad": "B",
+    "corrosividad": "C"
+   },
+   {
+    "nombre": "Cinc concentrado",
+    "densidadMin": 1.2,
+    "densidadMax": 1.28,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Clinker de cemento",
+    "densidadMin": 1.2,
+    "densidadMax": 1.52,
+    "reposoMin": 30,
+    "reposoMax": 40,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cloruro de magnesio",
+    "densidadMin": 0.528,
+    "densidadMax": 0.528,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Cloruro de potasio en gránulos",
+    "densidadMin": 1.92,
+    "densidadMax": 2.08,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Coque de petróleo calcinado",
+    "densidadMin": 0.56,
+    "densidadMax": 0.72,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Coque polvo 6 mm",
+    "densidadMin": 0.4,
+    "densidadMax": 0.5,
+    "reposoMin": 30,
+    "reposoMax": 45,
+    "abrasividad": "C",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Coque suave",
+    "densidadMin": 0.37,
+    "densidadMax": 0.56,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Corcho",
+    "densidadMin": 0.19,
+    "densidadMax": 0.24,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Criolita",
+    "densidadMin": 1.76,
+    "densidadMax": 1.76,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Criolita en polvo",
+    "densidadMin": 1.2,
+    "densidadMax": 1.44,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cuarzo 40-80 mm",
+    "densidadMin": 1.36,
+    "densidadMax": 1.52,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cuarzo criba 13 mm",
+    "densidadMin": 1.28,
+    "densidadMax": 1.44,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Cuarzo en polvo",
+    "densidadMin": 1.12,
+    "densidadMax": 1.28,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Desechos de fundición",
+    "densidadMin": 1.12,
+    "densidadMax": 1.6,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Dolomita fragmentada",
+    "densidadMin": 1.44,
+    "densidadMax": 1.6,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Escorias de fundición fragmentadas",
+    "densidadMin": 1.28,
+    "densidadMax": 1.44,
+    "reposoMin": 25,
+    "reposoMax": 25,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Feldespato criba 13 mm",
+    "densidadMin": 1.12,
+    "densidadMax": 1.36,
+    "reposoMin": 38,
+    "reposoMax": 38,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Feldespato granulado 40-80 mm",
+    "densidadMin": 1.44,
+    "densidadMax": 1.76,
+    "reposoMin": 34,
+    "reposoMax": 34,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Fosfato ácido fertilizante",
+    "densidadMin": 0.96,
+    "densidadMax": 0.96,
+    "reposoMin": 26,
+    "reposoMax": 26,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Fosfato bicálcico",
+    "densidadMin": 0.688,
+    "densidadMax": 0.688,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Fosfato bisódico",
+    "densidadMin": 0.4,
+    "densidadMax": 0.5,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Fosfato florida",
+    "densidadMin": 1.488,
+    "densidadMax": 1.488,
+    "reposoMin": 27,
+    "reposoMax": 27,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Fosfato natural en polvo",
+    "densidadMin": 0.96,
+    "densidadMax": 0.96,
+    "reposoMin": 40,
+    "reposoMax": 40,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Goma granulada",
+    "densidadMin": 0.8,
+    "densidadMax": 0.88,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Goma regenerada",
+    "densidadMin": 0.4,
+    "densidadMax": 0.48,
+    "reposoMin": 32,
+    "reposoMax": 32,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Grafito, copos",
+    "densidadMin": 0.64,
+    "densidadMax": 0.64,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Granito granulado 40-50 mm",
+    "densidadMin": 1.36,
+    "densidadMax": 1.44,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Granito, criba 13 mm",
+    "densidadMin": 1.28,
+    "densidadMax": 1.44,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Grava",
+    "densidadMin": 1.44,
+    "densidadMax": 1.6,
+    "reposoMin": 40,
+    "reposoMax": 40,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Gres fragmentado",
+    "densidadMin": 1.36,
+    "densidadMax": 1.44,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Guano seco",
+    "densidadMin": 1.12,
+    "densidadMax": 1.12,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Hormigón",
+    "densidadMin": 2.08,
+    "densidadMax": 2.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Hormigón con hierro",
+    "densidadMin": 1.44,
+    "densidadMax": 1.76,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Jabón en polvo",
+    "densidadMin": 0.32,
+    "densidadMax": 0.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Lignito",
+    "densidadMin": 0.64,
+    "densidadMax": 0.72,
+    "reposoMin": 38,
+    "reposoMax": 38,
+    "abrasividad": "A",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Magnesita fina",
+    "densidadMin": 1.04,
+    "densidadMax": 1.2,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Mármol fragmentado",
+    "densidadMin": 1.44,
+    "densidadMax": 1.52,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Mineral de cinc calcinado",
+    "densidadMin": 1.6,
+    "densidadMax": 1.6,
+    "reposoMin": 38,
+    "reposoMax": 38,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Mineral de cobre",
+    "densidadMin": 1.92,
+    "densidadMax": 2.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Mineral de hierro",
+    "densidadMin": 1.6,
+    "densidadMax": 3.2,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Mineral de hierro fragmentado",
+    "densidadMin": 2.16,
+    "densidadMax": 2.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Mineral de manganeso",
+    "densidadMin": 2.0,
+    "densidadMax": 2.24,
+    "reposoMin": 39,
+    "reposoMax": 39,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Mineral de níquel",
+    "densidadMin": 2.4,
+    "densidadMax": 2.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Mineral de plomo",
+    "densidadMin": 3.2,
+    "densidadMax": 4.32,
+    "reposoMin": 30,
+    "reposoMax": 30,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Nitrato de amonio",
+    "densidadMin": 0.72,
+    "densidadMax": 0.72,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "C"
+   },
+   {
+    "nombre": "Nitrato de potasio, salitre",
+    "densidadMin": 1.216,
+    "densidadMax": 1.216,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Nitrato de sodio",
+    "densidadMin": 1.12,
+    "densidadMax": 1.28,
+    "reposoMin": 24,
+    "reposoMax": 24,
+    "abrasividad": "A",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Óxido de aluminio",
+    "densidadMin": 1.12,
+    "densidadMax": 1.92,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Óxido de cinc pesado",
+    "densidadMin": 0.48,
+    "densidadMax": 0.56,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Óxido de plomo",
+    "densidadMin": 0.96,
+    "densidadMax": 2.04,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Óxido de titanio",
+    "densidadMin": 0.4,
+    "densidadMax": 0.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Pirita de hierro 50-80 mm",
+    "densidadMin": 2.16,
+    "densidadMax": 2.32,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Pirita pellets",
+    "densidadMin": 1.92,
+    "densidadMax": 2.08,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Pizarra en polvo",
+    "densidadMin": 1.12,
+    "densidadMax": 1.28,
+    "reposoMin": 35,
+    "reposoMax": 35,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Pizarra fragmentada 40÷80 mm",
+    "densidadMin": 1.36,
+    "densidadMax": 1.52,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Poliestireno",
+    "densidadMin": 0.64,
+    "densidadMax": 0.64,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Remolachas azuc. pulpa natur.",
+    "densidadMin": 0.4,
+    "densidadMax": 0.72,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Remolachas azuc. pulpa seca",
+    "densidadMin": 0.19,
+    "densidadMax": 0.24,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Sal común seca",
+    "densidadMin": 0.64,
+    "densidadMax": 0.88,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Sal común seca fina",
+    "densidadMin": 1.12,
+    "densidadMax": 1.28,
+    "reposoMin": 25,
+    "reposoMax": 25,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Sal de potasio silvinita",
+    "densidadMin": 1.28,
+    "densidadMax": 1.28,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Saponita talco fina",
+    "densidadMin": 0.64,
+    "densidadMax": 0.8,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Sulfato de aluminio granulado",
+    "densidadMin": 0.864,
+    "densidadMax": 0.864,
+    "reposoMin": 32,
+    "reposoMax": 32,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Sulfato de amonio",
+    "densidadMin": 0.72,
+    "densidadMax": 0.93,
+    "reposoMin": 32,
+    "reposoMax": 32,
+    "abrasividad": "B",
+    "corrosividad": "C"
+   },
+   {
+    "nombre": "Sulfato de cobre",
+    "densidadMin": 1.2,
+    "densidadMax": 1.36,
+    "reposoMin": 31,
+    "reposoMax": 31,
+    "abrasividad": "A",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Sulfato de hierro",
+    "densidadMin": 0.8,
+    "densidadMax": 1.2,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Sulfato de magnesio",
+    "densidadMin": 1.12,
+    "densidadMax": 1.12,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": null,
+    "corrosividad": null
+   },
+   {
+    "nombre": "Sulfato de manganeso",
+    "densidadMin": 1.12,
+    "densidadMax": 1.12,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Sulfato de potasio",
+    "densidadMin": 0.67,
+    "densidadMax": 0.77,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": null
+   },
+   {
+    "nombre": "Superfosfato",
+    "densidadMin": 0.816,
+    "densidadMax": 0.816,
+    "reposoMin": 45,
+    "reposoMax": 45,
+    "abrasividad": "B",
+    "corrosividad": "B"
+   },
+   {
+    "nombre": "Talco de caolín malla 100",
+    "densidadMin": 0.67,
+    "densidadMax": 0.9,
+    "reposoMin": 45,
+    "reposoMax": 45,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Talco en granos 40÷80 mm",
+    "densidadMin": 1.36,
+    "densidadMax": 1.52,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Talco en polvo",
+    "densidadMin": 0.8,
+    "densidadMax": 0.96,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Tierra húmeda arcillosa",
+    "densidadMin": 1.6,
+    "densidadMax": 1.76,
+    "reposoMin": 45,
+    "reposoMax": 45,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Trigo",
+    "densidadMin": 0.64,
+    "densidadMax": 0.67,
+    "reposoMin": 25,
+    "reposoMax": 25,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Virutas de acero",
+    "densidadMin": 1.6,
+    "densidadMax": 2.4,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "C",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Virutas de aluminio",
+    "densidadMin": 0.11,
+    "densidadMax": 0.24,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Virutas de hierro fundido",
+    "densidadMin": 2.08,
+    "densidadMax": 3.2,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "B",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Virutas de madera",
+    "densidadMin": 0.16,
+    "densidadMax": 0.48,
+    "reposoMin": null,
+    "reposoMax": null,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Yeso en polvo",
+    "densidadMin": 0.96,
+    "densidadMax": 1.12,
+    "reposoMin": 42,
+    "reposoMax": 42,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   },
+   {
+    "nombre": "Yeso granulado 13-80 mm",
+    "densidadMin": 1.12,
+    "densidadMax": 1.28,
+    "reposoMin": 30,
+    "reposoMax": 30,
+    "abrasividad": "A",
+    "corrosividad": "A"
+   }
+  ]
+ },
+ "fluidez": {
+  "fuente": "T1_4.1, figura 7, y T1_3.1, diapositiva 10",
+  "nota": "Para fluidez normal la tabla da 20-25°; la app propone 20° (valor bajo: menos sección, del lado de la seguridad en capacidad).",
+  "filas": [
+   {
+    "fluidez": "Muy buena",
+    "reposoMax": 20,
+    "sobrecarga": 5,
+    "texto": "5°"
+   },
+   {
+    "fluidez": "Buena",
+    "reposoMax": 30,
+    "sobrecarga": 10,
+    "texto": "10°"
+   },
+   {
+    "fluidez": "Normal",
+    "reposoMax": 40,
+    "sobrecarga": 20,
+    "texto": "20-25°"
+   },
+   {
+    "fluidez": "Mala",
+    "reposoMax": 90,
+    "sobrecarga": 30,
+    "texto": "30°"
+   }
+  ]
+ },
+ "coeficienteF": {
+  "fuente": "Resumen Tablas, diapositiva 7 (también UC3M, diapositiva 9)",
+  "opciones": [
+   {
+    "id": "rod-favorable",
+    "texto": "Rodamientos, condiciones favorables",
+    "f": 0.018
+   },
+   {
+    "id": "rod-normal",
+    "texto": "Rodamientos, condiciones normales",
+    "f": 0.02
+   },
+   {
+    "id": "rod-desfavorable-023",
+    "texto": "Rodamientos, condiciones desfavorables (0,023-0,030): valor bajo",
+    "f": 0.023
+   },
+   {
+    "id": "rod-desfavorable-030",
+    "texto": "Rodamientos, condiciones desfavorables (0,023-0,030): valor alto",
+    "f": 0.03
+   },
+   {
+    "id": "friccion",
+    "texto": "Cojinetes de fricción",
+    "f": 0.05
+   }
+  ]
+ },
+ "coeficienteC": {
+  "DIN22101": {
+   "fuente": "DIN 22101:2011, tabla 7 de Phoenix Design Fundamentals (T1_6, ejemplo 2: C = 1,45 para L = 200 m)",
+   "L": [
+    80,
+    100,
+    150,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1500,
+    2000
+   ],
+   "C": [
+    1.92,
+    1.78,
+    1.58,
+    1.45,
+    1.31,
+    1.25,
+    1.2,
+    1.17,
+    1.14,
+    1.12,
+    1.1,
+    1.09,
+    1.06,
+    1.05
+   ]
+  },
+  "UC3M": {
+   "fuente": "UC3M, diapositiva 10; T1_4.1 y Resumen Tablas, diapositiva 7 (T1_4.1, ejemplo 3: CL = 1,7 para L = 100 m)",
+   "L": [
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    13,
+    16,
+    20,
+    25,
+    32,
+    40,
+    50,
+    63,
+    80,
+    100,
+    125,
+    160,
+    200,
+    250,
+    320,
+    400,
+    500
+   ],
+   "C": [
+    9,
+    5.6,
+    6.6,
+    5.9,
+    5.1,
+    4.5,
+    4,
+    3.6,
+    3.2,
+    2.9,
+    2.6,
+    2.4,
+    2.2,
+    2,
+    1.8,
+    1.7,
+    1.6,
+    1.5,
+    1.4,
+    1.3,
+    1.2,
+    1.1,
+    1.05
+   ],
+   "posiblesErratas": [
+    {
+     "L": 4,
+     "valor": 5.6,
+     "nota": "Es menor que el valor para 5 m (6,6); probablemente 7,6."
+    }
+   ]
+  }
+ },
+ "coeficienteMu": {
+  "fuente": "T1_5.1, diapositiva 9 (coeficiente de rozamiento tambor-banda de goma)",
+  "superficies": [
+   "Tambor de acero desnudo, sin oxidar",
+   "Tambor forrado de goma (60 Shore)",
+   "Tambor forrado de poliuretano",
+   "Tambor forrado de cerámica"
+  ],
+  "condiciones": [
+   {
+    "condicion": "Funcionamiento en seco",
+    "rangos": [
+     [
+      0.35,
+      0.4
+     ],
+     [
+      0.4,
+      0.45
+     ],
+     [
+      0.35,
+      0.4
+     ],
+     [
+      0.4,
+      0.45
+     ]
+    ]
+   },
+   {
+    "condicion": "Mojado con agua limpia",
+    "rangos": [
+     [
+      0.1,
+      0.1
+     ],
+     [
+      0.35,
+      0.35
+     ],
+     [
+      0.35,
+      0.35
+     ],
+     [
+      0.35,
+      0.4
+     ]
+    ]
+   },
+   {
+    "condicion": "Mojado con agua sucia",
+    "rangos": [
+     [
+      0.05,
+      0.1
+     ],
+     [
+      0.25,
+      0.3
+     ],
+     [
+      0.2,
+      0.2
+     ],
+     [
+      0.35,
+      0.35
+     ]
+    ]
+   }
+  ],
+  "nota": "Cuando la tabla da un intervalo, la app propone el valor bajo (más tensión necesaria: del lado de la seguridad)."
+ },
+ "coeficienteSeguridad": {
+  "fuente": "T1_6, tabla 4.1 (DIN 22101, bandas de carcasa textil)",
+  "tramos": [
+   {
+    "zMax": 5,
+    "S": 11,
+    "texto": "de 3 a 5 capas"
+   },
+   {
+    "zMax": 9,
+    "S": 12,
+    "texto": "de 6 a 9 capas"
+   },
+   {
+    "zMax": null,
+    "S": 13,
+    "texto": "más de 9 capas"
+   }
+  ],
+  "nota": "Para menos de 3 capas se aplica S = 11, como en el ejemplo 6 de T1_6."
+ },
+ "tejidosEP": {
+  "fuente": "Catálogo Rotrans (rodillos.pdf), tabla B2: tipos de lona EP",
+  "unidad": "N/mm por capa",
+  "R": [
+   100,
+   125,
+   160,
+   200,
+   250,
+   315,
+   400,
+   500,
+   630
+  ]
+ },
+ "orientativos": {
+  "separacionEstaciones": {
+   "fuente": "Catálogo Rotrans (rodillos.pdf), tabla A",
+   "unidad": "m",
+   "nota": "Superiores según peso específico del material (t/m3).",
+   "filas": [
+    {
+     "B": 400,
+     "supLigero": 1.35,
+     "supPesado": 1.35,
+     "inf": 3.0
+    },
+    {
+     "B": 500,
+     "supLigero": 1.35,
+     "supPesado": 1.2,
+     "inf": 3.0
+    },
+    {
+     "B": 650,
+     "supLigero": 1.2,
+     "supPesado": 1.1,
+     "inf": 3.0
+    },
+    {
+     "B": 800,
+     "supLigero": 1.2,
+     "supPesado": 1.0,
+     "inf": 3.0
+    },
+    {
+     "B": 1000,
+     "supLigero": 1.0,
+     "supPesado": 1.0,
+     "inf": 3.0
+    },
+    {
+     "B": 1200,
+     "supLigero": 1.0,
+     "supPesado": 1.0,
+     "inf": 3.0
+    },
+    {
+     "B": 1400,
+     "supLigero": 1.0,
+     "supPesado": 1.0,
+     "inf": 3.0
+    },
+    {
+     "B": 1600,
+     "supLigero": 1.0,
+     "supPesado": 1.0,
+     "inf": 3.0
+    },
+    {
+     "B": 1800,
+     "supLigero": 1.0,
+     "supPesado": 1.0,
+     "inf": 3.0
+    },
+    {
+     "B": 2000,
+     "supLigero": 1.0,
+     "supPesado": 1.0,
+     "inf": 2.4
+    }
+   ],
+   "limitePesoEspecifico": 0.6
+  },
+  "pesoBanda": {
+   "fuente": "Catálogo Rotrans (rodillos.pdf), tabla B: peso por metro orientativo de bandas de alma textil",
+   "unidad": "kg/m",
+   "filas": [
+    {
+     "B": 400,
+     "qb": 4
+    },
+    {
+     "B": 500,
+     "qb": 5
+    },
+    {
+     "B": 650,
+     "qb": 6.5
+    },
+    {
+     "B": 800,
+     "qb": 8.5
+    },
+    {
+     "B": 1000,
+     "qb": 13
+    },
+    {
+     "B": 1200,
+     "qb": 15.5
+    },
+    {
+     "B": 1400,
+     "qb": 18
+    },
+    {
+     "B": 1600,
+     "qb": 25
+    },
+    {
+     "B": 1800,
+     "qb": 30
+    },
+    {
+     "B": 2000,
+     "qb": 33
+    }
+   ]
+  }
+ },
+ "diametrosTambor": {
+  "fuente": "UC3M, diapositiva 7: diámetros de tambor normalizados según DIN 22101",
+  "unidad": "mm",
+  "valores": [
+   200,
+   250,
+   320,
+   400,
+   500,
+   630,
+   800,
+   1000,
+   1250,
+   1400,
+   1600,
+   1800,
+   2000
+  ]
+ },
+ "ejemplos": [
+  {
+   "id": "diseno",
+   "titulo": "Diseño completo: caliza fragmentada, 400 t/h",
+   "ui": {
+    "mu": "1-1"
+   },
+   "fuente": "Ejemplo resuelto del Readme. Material de T1_3.2; masas orientativas del catálogo Rotrans.",
+   "nota": "La app elige ancho y velocidad. Valores orientativos para B = 650 mm: qb = 6,5 kg/m (Rotrans, tabla B); rodillos de 108 mm de Rotrans (3 x 1,75 x 2,3 = 12,08 kg por estación superior y 4,02 x 2,3 = 9,25 kg por rodillo inferior); separaciones 1,10 m y 3,00 m (tabla A); un limpiador FS2 = 50 N (como en T1_6, ejemplo 7).",
+   "entrada": {
+    "v0": 0,
+    "FNtamb": 0,
+    "FS1": 0,
+    "FS2": 50,
+    "FuManual": null,
+    "T2manual": null,
+    "TlocalSup": null,
+    "TlocalInf": null,
+    "zManual": null,
+    "l3Manual": null,
+    "C": null,
+    "margenAdh": 20,
+    "hrelMax": 1,
+    "zMin": 3,
+    "modo": "diseno",
+    "Q": 400,
+    "L": 150,
+    "H": 12,
+    "material": {
+     "nombre": "Caliza fragmentada",
+     "densidad": 1.4,
+     "reposo": 35,
+     "abrasividad": "B",
+     "beta": "auto",
+     "clase": "auto",
+     "tamMax": 100,
+     "granulometria": "mezcla"
+    },
+    "rodillos": 3,
+    "lambda": 30,
+    "metodoCapacidad": "masico",
+    "B": null,
+    "v": null,
+    "qb": 6.5,
+    "modoRodillos": "porEstacion",
+    "mRO": 12.08,
+    "mRU": 9.25,
+    "lSup": 1.1,
+    "lInf": 3.0,
+    "f": 0.02,
+    "metodoResistencias": "auto",
+    "tablaC": "DIN",
+    "eta": 0.9,
+    "D": 500,
+    "mu": 0.35,
+    "theta": 180,
+    "R": 160
+   }
+  },
+  {
+   "id": "integrado",
+   "titulo": "Ejemplo integrado de los apuntes (T1_6, págs. 39-44)",
+   "fuente": "T1_6, ejemplo integrado (págs. 39-44).",
+   "nota": "Los apuntes dan qR = qRO + qRU = 10 kg/m (se introduce en qRO). T2 = 4000 N adoptada y tensiones locales de 6000 N y 4000 N para la flecha, como en los apuntes.",
+   "entrada": {
+    "v0": 0,
+    "FNtamb": 0,
+    "FS1": 0,
+    "FS2": 40,
+    "FuManual": null,
+    "T2manual": 4000,
+    "TlocalSup": 6000,
+    "TlocalInf": 4000,
+    "zManual": null,
+    "l3Manual": null,
+    "C": null,
+    "margenAdh": 20,
+    "hrelMax": 1,
+    "zMin": 3,
+    "modo": "comprobacion",
+    "L": 200,
+    "H": 10,
+    "B": 800,
+    "v": 2,
+    "qG": 25,
+    "qb": 8,
+    "modoRodillos": "porMetro",
+    "qRO": 10,
+    "qRU": 0,
+    "lSup": 1.2,
+    "lInf": 2.4,
+    "f": 0.02,
+    "metodoResistencias": "auto",
+    "tablaC": "DIN",
+    "eta": 0.9,
+    "D": 400,
+    "mu": 0.3,
+    "theta": 180,
+    "R": 160
+   }
+  },
+  {
+   "id": "granito",
+   "titulo": "Granito fino, 100 t/h (T1_4.1, ejemplo 3)",
+   "fuente": "T1_4.1, ejemplo 3 (libro de la UNED).",
+   "nota": "Como en los apuntes: v = 1,52 m/s (la app avisa de que no es normalizada) y CL = 1,7 de la tabla UC3M. El enunciado no da mu ni el diámetro del tambor: se suponen mu = 0,30 y D = 400 mm. Se comprueba la banda de 3 capas de 200 N/mm que pide el enunciado.",
+   "entrada": {
+    "v0": 0,
+    "FNtamb": 0,
+    "FS1": 0,
+    "FS2": 0,
+    "FuManual": null,
+    "T2manual": null,
+    "TlocalSup": null,
+    "TlocalInf": null,
+    "zManual": 3,
+    "l3Manual": null,
+    "C": null,
+    "margenAdh": 20,
+    "hrelMax": 1,
+    "zMin": 3,
+    "modo": "diseno",
+    "Q": 100,
+    "L": 100,
+    "H": 0,
+    "material": {
+     "nombre": "Granito fino",
+     "densidad": 1.5,
+     "reposo": null,
+     "abrasividad": null,
+     "beta": 15,
+     "clase": "C",
+     "tamMax": 10,
+     "granulometria": "uniforme"
+    },
+    "rodillos": 3,
+    "lambda": 30,
+    "metodoCapacidad": "masico",
+    "B": null,
+    "v": 1.52,
+    "qb": 3.8,
+    "modoRodillos": "porEstacion",
+    "mRO": 5.4,
+    "mRU": 4.0,
+    "lSup": 1.2,
+    "lInf": 2.4,
+    "f": 0.02,
+    "metodoResistencias": "auto",
+    "tablaC": "UC3M",
+    "eta": 0.85,
+    "D": 400,
+    "mu": 0.3,
+    "theta": 210,
+    "R": 200
+   }
+  },
+  {
+   "id": "caliza1500",
+   "titulo": "Roca caliza, 1500 t/h (T1_4.1, ejemplo 1)",
+   "fuente": "T1_4.1, ejemplo 1 (elección de ancho y velocidad con la tabla Rulmeca).",
+   "nota": "El ejemplo de los apuntes solo resuelve la capacidad. Para el resto se suponen valores orientativos: qb de Rotrans (tabla B), rodillos Rotrans de 133 mm y separaciones de la tabla A, f = 0,020, D = 630 mm, mu = 0,35 y tejido EP 630. Con 150 m de desnivel salen muchas capas: en la práctica se usaría banda de cables de acero.",
+   "entrada": {
+    "v0": 0,
+    "FNtamb": 0,
+    "FS1": 0,
+    "FS2": 0,
+    "FuManual": null,
+    "T2manual": null,
+    "TlocalSup": null,
+    "TlocalInf": null,
+    "zManual": null,
+    "l3Manual": null,
+    "C": null,
+    "margenAdh": 20,
+    "hrelMax": 1,
+    "zMin": 3,
+    "modo": "diseno",
+    "Q": 1500,
+    "L": 805,
+    "H": 150,
+    "material": {
+     "nombre": "Roca caliza",
+     "densidad": 1.4,
+     "reposo": null,
+     "abrasividad": null,
+     "beta": 15,
+     "clase": "B",
+     "tamMax": 250,
+     "granulometria": "mezcla"
+    },
+    "rodillos": 3,
+    "lambda": 35,
+    "metodoCapacidad": "volumetrico",
+    "B": null,
+    "v": null,
+    "qb": 13,
+    "modoRodillos": "porEstacion",
+    "mRO": 20.45,
+    "mRU": 16.88,
+    "lSup": 1.0,
+    "lInf": 3.0,
+    "f": 0.02,
+    "metodoResistencias": "auto",
+    "tablaC": "DIN",
+    "eta": 0.9,
+    "D": 630,
+    "mu": 0.35,
+    "theta": 180,
+    "R": 630
+   }
+  }
+ ]
+}
