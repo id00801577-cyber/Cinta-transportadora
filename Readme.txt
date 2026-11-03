@@ -51,9 +51,10 @@ La aplicación tiene dos modos:
 -------------------------------------------------------------------------------
 2. CÓMO ABRIRLA
 -------------------------------------------------------------------------------
-  a) En Internet (GitHub Pages):
-       https://<usuario>.github.io/<repositorio>/
-     (dirección que se completa al publicar el repositorio)
+a) En Internet (GitHub Pages):
+       https://id00801577-cyber.github.io/Cinta-transportadora/
+     Código fuente (repositorio de GitHub):
+       https://github.com/id00801577-cyber/Cinta-transportadora
 
   b) Sin conexión: descomprimir el ZIP y abrir index.html con doble clic.
      Los navegadores no dejan leer archivos .json desde el disco, así que en
